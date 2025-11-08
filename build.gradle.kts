@@ -20,7 +20,11 @@ dependencies {
     annotationProcessor(lombok)
 }
 
-// Lombok
+java {
+    val version = JavaVersion.VERSION_1_8
+    targetCompatibility = version
+    sourceCompatibility = version
+}
 
 // Header
 spotless {
