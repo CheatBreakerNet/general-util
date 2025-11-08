@@ -16,11 +16,11 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public final class MathUtil {
-    private static final int COSINE_VALUES_SIZE = 8192;
-    private static final int COSINE_VALUES_SIZE_DOUBLE = COSINE_VALUES_SIZE * 2;
-    private static final double[] COSINE_VALUES = new double[COSINE_VALUES_SIZE];
-    private static final double PI_DOUBLE = Math.PI * 2;
-    private static final double PI_HALF = Math.PI / 2;
+    private final int COSINE_VALUES_SIZE = 8192;
+    private final int COSINE_VALUES_SIZE_DOUBLE = COSINE_VALUES_SIZE * 2;
+    private final double[] COSINE_VALUES = new double[COSINE_VALUES_SIZE];
+    private final double PI_DOUBLE = Math.PI * 2;
+    private final double PI_HALF = Math.PI / 2;
 
     public double sin(double angle) {
         return cos(angle - PI_HALF);
