@@ -13,6 +13,7 @@
 package com.cheatbreaker.general.wordwrap;
 
 import com.google.common.base.Preconditions;
+import lombok.experimental.UtilityClass;
 import org.apache.commons.io.input.CharSequenceReader;
 
 import java.io.*;
@@ -24,14 +25,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
+@UtilityClass
 public final class WordWrap {
-    private static final String SPECIAL_WORD_CHARS = "\"'‘’“”?./!,;:_";
-    public static final Set<Character> SPECIAL_WORD_CHARS_SET_DEFAULT = toSet(SPECIAL_WORD_CHARS);
-    private static final Function<CharSequence, Number> STRING_WIDTH_DEFAULT = CharSequence::length;
-    private static final String PUNCTUATION = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-
-    private WordWrap() {
-    }
+    private final String SPECIAL_WORD_CHARS = "\"'‘’“”?./!,;:_";
+    private final Function<CharSequence, Number> STRING_WIDTH_DEFAULT = CharSequence::length;
+    private final String PUNCTUATION = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+    public final Set<Character> SPECIAL_WORD_CHARS_SET_DEFAULT = toSet(SPECIAL_WORD_CHARS);
 
     /**
      * Sets the source to be wrapped and returns a builder to specify more parameters.

@@ -12,10 +12,10 @@
 
 package com.cheatbreaker.general.utils;
 
-public final class StringUtil {
-    private StringUtil() {
-    }
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
+public final class StringUtil {
     public static String pluralize(float amount, String string) {
         return pluralize(amount, string, false);
     }
