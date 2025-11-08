@@ -4,12 +4,9 @@ plugins {
     id("com.diffplug.spotless") version "8.0.0"
 }
 
+val libraryName = property("library_name").toString()
 group = property("group")!!
 version = property("version")!!
-
-base {
-    archivesName.set(property("name").toString())
-}
 
 repositories {
     mavenCentral()
@@ -39,7 +36,7 @@ spotless {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            artifactId = "${project.group}:${base.archivesName}:${project.version}"
+            artifactId = libraryName
             from(components["java"])
         }
     }
