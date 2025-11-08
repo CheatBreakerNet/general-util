@@ -31,7 +31,6 @@ public final class WordWrap {
     private static final String PUNCTUATION = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
     private WordWrap() {
-        // prevent instantiation
     }
 
     /**
