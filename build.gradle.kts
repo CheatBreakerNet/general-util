@@ -14,8 +14,13 @@ dependencies {
     implementation("commons-io:commons-io:${property("commons_io_version")}")
     implementation("com.google.guava:guava:${property("guava_version")}")
     implementation("com.google.guava:failureaccess:${property("guava_failureaccess_version")}")
-    implementation("org.projectlombok:lombok:${property("lombok_version")}")
+
+    val lombok = "org.projectlombok:lombok:${property("lombok_version")}"
+    compileOnly(lombok)
+    annotationProcessor(lombok)
 }
+
+// Lombok
 
 // Header
 spotless {
