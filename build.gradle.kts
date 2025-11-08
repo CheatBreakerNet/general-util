@@ -1,10 +1,15 @@
 plugins {
     id("java")
+    id("maven-publish")
     id("com.diffplug.spotless") version "8.0.0"
 }
 
-group = "com.cheatbreaker"
-version = "1.0-SNAPSHOT"
+group = property("group")!!
+version = property("version")!!
+
+base {
+    archivesName.set(property("name").toString())
+}
 
 repositories {
     mavenCentral()
@@ -27,5 +32,18 @@ spotless {
 
     kotlin {
         licenseHeaderFile(licenseHeader)
+    }
+}
+
+// Maven Publishing
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "${project.group}:${base.archivesName}:${project.version}"
+            from(components["java"])
+        }
+    }
+
+    repositories {
     }
 }
