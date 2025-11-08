@@ -5,8 +5,6 @@ plugins {
 }
 
 val libraryName = property("library_name").toString()
-group = property("group")!!
-version = property("version")!!
 
 repositories {
     mavenCentral()
