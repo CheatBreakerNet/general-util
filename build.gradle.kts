@@ -26,6 +26,10 @@ java {
     sourceCompatibility = version
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
 // Header
 spotless {
     val licenseHeader = rootProject.file("HEADER")
