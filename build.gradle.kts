@@ -37,6 +37,8 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             artifactId = libraryName
+            group = project.group
+            version = project.version.toString()
             from(components["java"])
         }
     }
