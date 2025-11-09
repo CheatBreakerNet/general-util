@@ -45,6 +45,11 @@ public class Identifier {
         }
     }
 
+    @Override
+    public String toString() {
+        return this.namespace + ":" + this.path;
+    }
+
     public static class InvalidException extends Exception {
         public InvalidException(String message) {
             super(message);
