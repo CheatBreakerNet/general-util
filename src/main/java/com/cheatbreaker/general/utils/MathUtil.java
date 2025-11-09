@@ -39,6 +39,42 @@ public final class MathUtil {
         return COSINE_VALUES[index];
     }
 
+    public static float clamp(float value, float min, float max) {
+        if (value < min) {
+            return min;
+        }
+
+        if (value > max) {
+            return max;
+        }
+
+        return value;
+    }
+
+    public static double clamp(double value, double min, double max) {
+        if (value < min) {
+            return min;
+        }
+
+        if (value > max) {
+            return max;
+        }
+
+        return value;
+    }
+
+    public static int clamp(int value, int min, int max) {
+        if (value < min) {
+            return min;
+        }
+
+        if (value > max) {
+            return max;
+        }
+
+        return value;
+    }
+
     static {
         for (int value = 0; value < COSINE_VALUES_SIZE; ++value) {
             COSINE_VALUES[value] = Math.cos(value / (float) COSINE_VALUES_SIZE * Math.PI);
