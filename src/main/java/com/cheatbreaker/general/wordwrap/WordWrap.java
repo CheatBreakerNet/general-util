@@ -237,7 +237,7 @@ public final class WordWrap {
                     }
                 }
             } else {
-                if (!word.isEmpty() && !isWhitespace(word)) {
+                if (word.length() > 0 && !isWhitespace(word)) {
                     appendWordToLine(line, word);
                     if (broken) {
                         leftTrim(line);
@@ -246,16 +246,13 @@ public final class WordWrap {
 
                 word.append(ch);
                 if (tooLong(stringWidth, lineAndWordRightTrim, maxWidthDouble)) {
-                    Preconditions.checkArgument(
-                            line.length() > 0,
-                            "line length was zero. If this happens please" //
-                                    + " contribute unit test that provokes this failure to the"
-                                    + " project!");
+                    Preconditions.checkArgument(line.length() > 0, "line length was zero. If this happens please contribute unit test that provokes this failure to the project!");
                     if (!isWhitespace(line)) {
                         writeLine(out, line);
                     } else {
                         line.setLength(0);
                     }
+
                     broken = true;
                 }
             }
@@ -263,11 +260,12 @@ public final class WordWrap {
             previousWasPunctuation = isPunctuation(ch) && !extraWordChars.contains(ch);
         }
 
-        if (!line.isEmpty()) {
+        if (line.length() > 0) {
             String s = line.toString() + word;
             if (broken) {
                 s = leftTrim(s);
             }
+
             out.write(s);
         } else {
             if (broken) {
@@ -288,10 +286,7 @@ public final class WordWrap {
         return PUNCTUATION.indexOf(ch) != -1;
     }
 
-    private static boolean tooLong(
-            Function<? super CharSequence, ? extends Number> stringWidth,
-            CharSequence s,
-            double maxWidthDouble) {
+    private static boolean tooLong(Function<? super CharSequence, ? extends Number> stringWidth, CharSequence s, double maxWidthDouble) {
         return stringWidth.apply(s).doubleValue() > maxWidthDouble;
     }
 
