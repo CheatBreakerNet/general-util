@@ -7,6 +7,7 @@ plugins {
 val libraryName = property("library_name").toString()
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
