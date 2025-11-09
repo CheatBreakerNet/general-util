@@ -40,39 +40,15 @@ public final class MathUtil {
     }
 
     public static float clamp(float value, float min, float max) {
-        if (value < min) {
-            return min;
-        }
-
-        if (value > max) {
-            return max;
-        }
-
-        return value;
+        return Math.max(Math.min(value, max), min);
     }
 
     public static double clamp(double value, double min, double max) {
-        if (value < min) {
-            return min;
-        }
-
-        if (value > max) {
-            return max;
-        }
-
-        return value;
+        return Math.max(Math.min(value, max), min);
     }
 
     public static int clamp(int value, int min, int max) {
-        if (value < min) {
-            return min;
-        }
-
-        if (value > max) {
-            return max;
-        }
-
-        return value;
+        return Math.max(Math.min(value, max), min);
     }
 
     static {
