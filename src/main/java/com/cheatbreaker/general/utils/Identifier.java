@@ -31,11 +31,11 @@ public class Identifier {
             }
 
             if (!isValidNamespace(namespace)) {
-                throw new InvalidException("Invalid identifier namespace \"" + input + "\", namespace only accepts " + NAMESPACE_PATTERN.pattern());
+                throw new InvalidException("Invalid identifier \"" + input + "\", namespace only accepts " + NAMESPACE_PATTERN.pattern());
             }
 
             if (!isValidPath(path)) {
-                throw new InvalidException("Invalid identifier path \"" + input + "\", path only accepts " + PATH_PATTERN.pattern());
+                throw new InvalidException("Invalid identifier \"" + input + "\", path only accepts " + PATH_PATTERN.pattern());
             }
 
             return new Identifier(namespace, path);
