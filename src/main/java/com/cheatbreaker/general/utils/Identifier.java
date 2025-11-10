@@ -74,6 +74,22 @@ public class Identifier {
         }
     }
 
+    public Identifier withNamespace(String namespace) throws InvalidException {
+        if (!isValidNamespace(namespace)) {
+            throw new InvalidException("Invalid identifier namespace \"" + namespace + "\", only accepts " + NAMESPACE_PATTERN.pattern());
+        } else {
+            return Identifier.of(namespace, this.path);
+        }
+    }
+
+    public Identifier withPath(String path) throws InvalidException {
+        if (!isValidPath(path)) {
+            throw new InvalidException("Invalid identifier path \"" + path + "\", only accepts " + PATH_PATTERN.pattern());
+        } else {
+            return Identifier.of(this.namespace, path);
+        }
+    }
+
     public static boolean isValidNamespace(String namespace) {
         return namespace != null && NAMESPACE_PATTERN.matcher(namespace).matches();
     }
@@ -87,7 +103,7 @@ public class Identifier {
         return this.namespace + ":" + this.path;
     }
 
-    public static class InvalidException extends Exception {
+    public static class InvalidException extends RuntimeException {
         public InvalidException(String message) {
             super(message);
         }
