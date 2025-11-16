@@ -14,6 +14,7 @@ package com.cheatbreaker.general.utils;
 
 import lombok.experimental.UtilityClass;
 
+import java.awt.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,6 +73,10 @@ public final class ColorUtil {
         public static int colorFloat(float red, float green, float blue, float alpha) {
             return color((int) ((double) (red * 255.0F) + 0.5), (int) ((double) (green * 255.0F) + 0.5), (int) ((double) (blue * 255.0F) + 0.5), (int) ((double) (alpha * 255.0F) + 0.5));
         }
+
+        public static Color getAwtColor(int argb) {
+            return new Color(red(argb), green(argb), blue(argb), alpha(argb));
+        }
     }
 
     @UtilityClass
@@ -82,6 +87,10 @@ public final class ColorUtil {
 
         public static int colorFloat(float red, float green, float blue, float alpha) {
             return color((int) ((double) (red * 255.0F) + 0.5), (int) ((double) (green * 255.0F) + 0.5), (int) ((double) (blue * 255.0F) + 0.5), (int) ((double) (alpha * 255.0F) + 0.5));
+        }
+
+        public static Color getAwtColor(int rgba) {
+            return new Color(rgba, true);
         }
     }
 }
