@@ -31,51 +31,57 @@ public final class ColorUtil {
         return group;
     }
 
-    public static float red(int value) {
-        return (float) redBits(value) / 255.0F;
+    @UtilityClass
+    public static final class ARGB {
+        public static float red(int value) {
+            return (float) redBits(value) / 255.0F;
+        }
+
+        public static int redBits(int value) {
+            return value >> 16 & 255;
+        }
+
+        public static float green(int value) {
+            return (float) greenBits(value) / 255.0F;
+        }
+
+        public static int greenBits(int value) {
+            return value >> 8 & 255;
+        }
+
+        public static float blue(int value) {
+            return (float) blueBits(value) / 255.0F;
+        }
+
+        public static int blueBits(int value) {
+            return value & 255;
+        }
+
+        public static float alpha(int value) {
+            return (float) alphaBits(value) / 255.0F;
+        }
+
+        public static int alphaBits(int value) {
+            return value >> 24 & 255;
+        }
+
+        public static int color(int red, int green, int blue, int alpha) {
+            return (alpha & 255) << 24 | (red & 255) << 16 | (green & 255) << 8 | blue & 255;
+        }
+
+        public static int colorFloat(float red, float green, float blue, float alpha) {
+            return color((int) ((double) (red * 255.0F) + 0.5), (int) ((double) (green * 255.0F) + 0.5), (int) ((double) (blue * 255.0F) + 0.5), (int) ((double) (alpha * 255.0F) + 0.5));
+        }
     }
 
-    public static int redBits(int value) {
-        return value >> 16 & 255;
-    }
+    @UtilityClass
+    public static final class RGBA {
+        public static int color(int red, int green, int blue, int alpha) {
+            return (red & 255) << 24 | (green & 255) << 16 | (blue & 255) << 8 | alpha & 255;
+        }
 
-    public static float green(int value) {
-        return (float) greenBits(value) / 255.0F;
-    }
-
-    public static int greenBits(int value) {
-        return value >> 8 & 255;
-    }
-
-    public static float blue(int value) {
-        return (float) blueBits(value) / 255.0F;
-    }
-
-    public static int blueBits(int value) {
-        return value & 255;
-    }
-
-    public static float alpha(int value) {
-        return (float) alphaBits(value) / 255.0F;
-    }
-
-    public static int alphaBits(int value) {
-        return value >> 24 & 255;
-    }
-
-    public static int argb(int red, int green, int blue, int alpha) {
-        return (alpha & 255) << 24 | (red & 255) << 16 | (green & 255) << 8 | blue & 255;
-    }
-
-    public static int argbFloat(float red, float green, float blue, float alpha) {
-        return argb((int) ((double) (red * 255.0F) + 0.5), (int) ((double) (green * 255.0F) + 0.5), (int) ((double) (blue * 255.0F) + 0.5), (int) ((double) (alpha * 255.0F) + 0.5));
-    }
-
-    public static int rgba(int red, int green, int blue, int alpha) {
-        return (red & 255) << 24 | (green & 255) << 16 | (blue & 255) << 8 | alpha & 255;
-    }
-
-    public static int rgbaFloat(float red, float green, float blue, float alpha) {
-        return rgba((int) ((double) (red * 255.0F) + 0.5), (int) ((double) (green * 255.0F) + 0.5), (int) ((double) (blue * 255.0F) + 0.5), (int) ((double) (alpha * 255.0F) + 0.5));
+        public static int colorFloat(float red, float green, float blue, float alpha) {
+            return color((int) ((double) (red * 255.0F) + 0.5), (int) ((double) (green * 255.0F) + 0.5), (int) ((double) (blue * 255.0F) + 0.5), (int) ((double) (alpha * 255.0F) + 0.5));
+        }
     }
 }
