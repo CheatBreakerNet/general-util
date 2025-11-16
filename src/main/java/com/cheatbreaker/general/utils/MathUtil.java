@@ -14,6 +14,9 @@ package com.cheatbreaker.general.utils;
 
 import lombok.experimental.UtilityClass;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 @UtilityClass
 public final class MathUtil {
     private final int COSINE_VALUES_SIZE = 8192;
@@ -57,6 +60,11 @@ public final class MathUtil {
 
     public static double lerp(double delta, double start, double end) {
         return start + delta * (end - start);
+    }
+
+    public static double round(double value, int places) {
+        final BigDecimal bd = new BigDecimal(Double.toString(value));
+        return bd.setScale(places, RoundingMode.HALF_UP).doubleValue();
     }
 
     static {
