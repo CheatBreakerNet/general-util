@@ -51,6 +51,14 @@ public final class MathUtil {
         return Math.max(Math.min(value, max), min);
     }
 
+    public static float lerp(float delta, float start, float end) {
+        return start + delta * (end - start);
+    }
+
+    public static double lerp(double delta, double start, double end) {
+        return start + delta * (end - start);
+    }
+
     static {
         for (int value = 0; value < COSINE_VALUES_SIZE; ++value) {
             COSINE_VALUES[value] = Math.cos(value / (float) COSINE_VALUES_SIZE * Math.PI);
