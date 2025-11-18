@@ -79,7 +79,7 @@ public final class ColorUtil {
         }
 
         public static int withAlpha(int color, float alpha) {
-            return color(red(color), green(color), blue(color), alpha);
+            return colorFloat(red(color), green(color), blue(color), alpha);
         }
 
         public static Color getAwtColor(int argb) {
