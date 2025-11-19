@@ -15,14 +15,12 @@ package com.cheatbreaker.general.utils;
 import lombok.Getter;
 import org.jspecify.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Getter
 public class Identifier {
     private static final Pattern NAMESPACE_PATTERN = Pattern.compile("[a-z0-9_.-]+");
     private static final Pattern PATH_PATTERN = Pattern.compile("[A-Za-z0-9/._-]+");
-    public static Optional<Class<?>> RESOURCE_LOCATION_CLAZZ = Optional.empty();
     private final String namespace;
     private final String path;
 
@@ -96,14 +94,6 @@ public class Identifier {
             throw new InvalidException("Invalid identifier path \"" + path + "\", only accepts " + PATH_PATTERN.pattern());
         } else {
             return Identifier.of(this.namespace, path);
-        }
-    }
-
-    public <T> T toVanilla() {
-        try {
-            return (T) RESOURCE_LOCATION_CLAZZ.get().getConstructor(String.class).newInstance(this.toString());
-        } catch (Exception ignored) {
-            return null;
         }
     }
 
