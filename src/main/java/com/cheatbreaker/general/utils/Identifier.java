@@ -20,10 +20,9 @@ import java.util.regex.Pattern;
 
 @Getter
 public class Identifier {
-    public static final Optional<Class<?>> RESOURCE_LOCATION_CLAZZ = Optional.empty();
     private static final Pattern NAMESPACE_PATTERN = Pattern.compile("[a-z0-9_.-]+");
     private static final Pattern PATH_PATTERN = Pattern.compile("[A-Za-z0-9/._-]+");
-
+    public static Optional<Class<?>> RESOURCE_LOCATION_CLAZZ = Optional.empty();
     private final String namespace;
     private final String path;
 
