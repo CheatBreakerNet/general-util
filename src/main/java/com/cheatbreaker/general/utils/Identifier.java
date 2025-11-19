@@ -15,10 +15,12 @@ package com.cheatbreaker.general.utils;
 import lombok.Getter;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Getter
 public class Identifier {
+    public static final Optional<Class<?>> RESOURCE_LOCATION_CLAZZ = Optional.empty();
     private static final Pattern NAMESPACE_PATTERN = Pattern.compile("[a-z0-9_.-]+");
     private static final Pattern PATH_PATTERN = Pattern.compile("[A-Za-z0-9/._-]+");
 
@@ -100,8 +102,7 @@ public class Identifier {
 
     public <T> T toVanilla() {
         try {
-            Class<?> clazz = Class.forName("net.minecraft.util.ResourceLocation");
-            return (T) clazz.getConstructor(String.class).newInstance(this.toString());
+            return (T) RESOURCE_LOCATION_CLAZZ.get().getConstructor(String.class).newInstance(this.toString());
         } catch (Exception ignored) {
             return null;
         }
