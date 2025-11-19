@@ -74,6 +74,14 @@ public class Identifier {
         }
     }
 
+    public static boolean isValidNamespace(String namespace) {
+        return namespace != null && NAMESPACE_PATTERN.matcher(namespace).matches();
+    }
+
+    public static boolean isValidPath(String path) {
+        return path != null && PATH_PATTERN.matcher(path).matches();
+    }
+
     public Identifier withNamespace(String namespace) throws InvalidException {
         if (!isValidNamespace(namespace)) {
             throw new InvalidException("Invalid identifier namespace \"" + namespace + "\", only accepts " + NAMESPACE_PATTERN.pattern());
@@ -90,12 +98,13 @@ public class Identifier {
         }
     }
 
-    public static boolean isValidNamespace(String namespace) {
-        return namespace != null && NAMESPACE_PATTERN.matcher(namespace).matches();
-    }
-
-    public static boolean isValidPath(String path) {
-        return path != null && PATH_PATTERN.matcher(path).matches();
+    public <T> T toVanilla() {
+        try {
+            Class<?> clazz = Class.forName("net.minecraft.util.ResourceLocation");
+            return (T) clazz.getConstructor(String.class).newInstance(this.toString());
+        } catch (Exception ignored) {
+            return null;
+        }
     }
 
     @Override
