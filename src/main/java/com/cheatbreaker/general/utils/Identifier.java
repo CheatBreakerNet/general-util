@@ -21,7 +21,6 @@ import java.util.regex.Pattern;
 public class Identifier {
     private static final Pattern NAMESPACE_PATTERN = Pattern.compile("[a-z0-9_.-]+");
     private static final Pattern PATH_PATTERN = Pattern.compile("[A-Za-z0-9/._-]+");
-
     private final String namespace;
     private final String path;
 
@@ -74,6 +73,14 @@ public class Identifier {
         }
     }
 
+    public static boolean isValidNamespace(String namespace) {
+        return namespace != null && NAMESPACE_PATTERN.matcher(namespace).matches();
+    }
+
+    public static boolean isValidPath(String path) {
+        return path != null && PATH_PATTERN.matcher(path).matches();
+    }
+
     public Identifier withNamespace(String namespace) throws InvalidException {
         if (!isValidNamespace(namespace)) {
             throw new InvalidException("Invalid identifier namespace \"" + namespace + "\", only accepts " + NAMESPACE_PATTERN.pattern());
@@ -88,14 +95,6 @@ public class Identifier {
         } else {
             return Identifier.of(this.namespace, path);
         }
-    }
-
-    public static boolean isValidNamespace(String namespace) {
-        return namespace != null && NAMESPACE_PATTERN.matcher(namespace).matches();
-    }
-
-    public static boolean isValidPath(String path) {
-        return path != null && PATH_PATTERN.matcher(path).matches();
     }
 
     @Override
