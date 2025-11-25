@@ -74,6 +74,14 @@ public final class ColorUtil {
             return color((int) ((double) (red * 255.0F) + 0.5), (int) ((double) (green * 255.0F) + 0.5), (int) ((double) (blue * 255.0F) + 0.5), (int) ((double) (alpha * 255.0F) + 0.5));
         }
 
+        public static int withAlpha(int color, float alpha) {
+            return colorFloat(red(color), green(color), blue(color), alpha);
+        }
+
+        public static int withAlpha(int color, int alpha) {
+            return color(redBits(color), greenBits(color), blueBits(color), alpha);
+        }
+
         public static Color getAwtColor(int argb) {
             return new Color(red(argb), green(argb), blue(argb), alpha(argb));
         }
