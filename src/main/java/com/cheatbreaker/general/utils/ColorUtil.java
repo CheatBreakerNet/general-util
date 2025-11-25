@@ -20,10 +20,11 @@ import java.util.regex.Pattern;
 
 @UtilityClass
 public final class ColorUtil {
-    private static final Pattern CBformattingCodePattern = Pattern.compile("(?i)" + '§' + "[0-9A-FR]");
+    public static final Pattern FORMATTING_CODE_PATTERN = Pattern.compile("(?i)" + '§' + "[0-9A-FR]");
+    public static final int WHITE = 0xFFFFFFFF;
 
     public static String formatColor(String input) {
-        Matcher matcher = CBformattingCodePattern.matcher(input);
+        Matcher matcher = FORMATTING_CODE_PATTERN.matcher(input);
         String group = "";
         while (matcher.find()) {
             group = matcher.group();
@@ -34,6 +35,8 @@ public final class ColorUtil {
 
     @UtilityClass
     public static final class ARGB {
+        public static final int BLACK = 0xFF000000;
+
         public static float red(int value) {
             return (float) redBits(value) / 255.0F;
         }
@@ -82,6 +85,10 @@ public final class ColorUtil {
             return color(redBits(color), greenBits(color), blueBits(color), alpha);
         }
 
+        public static int toRGBA(int color) {
+            return RGBA.colorFloat(red(color), green(color), blue(color), alpha(color));
+        }
+
         public static Color getAwtColor(int argb) {
             return new Color(red(argb), green(argb), blue(argb), alpha(argb));
         }
@@ -89,12 +96,50 @@ public final class ColorUtil {
 
     @UtilityClass
     public static final class RGBA {
+        public static final int BLACK = 0x000000FF;
+
+        public static float red(int value) {
+            return (float) redBits(value) / 255.0F;
+        }
+
+        public static int redBits(int value) {
+            return 0; // TODO
+        }
+
+        public static float green(int value) {
+            return (float) greenBits(value) / 255.0F;
+        }
+
+        public static int greenBits(int value) {
+            return 0; // TODO
+        }
+
+        public static float blue(int value) {
+            return (float) blueBits(value) / 255.0F;
+        }
+
+        public static int blueBits(int value) {
+            return 0; // TODO
+        }
+
+        public static float alpha(int value) {
+            return (float) alphaBits(value) / 255.0F;
+        }
+
+        public static int alphaBits(int value) {
+            return 0; // TODO
+        }
+
         public static int color(int red, int green, int blue, int alpha) {
             return (red & 255) << 24 | (green & 255) << 16 | (blue & 255) << 8 | alpha & 255;
         }
 
         public static int colorFloat(float red, float green, float blue, float alpha) {
             return color((int) ((double) (red * 255.0F) + 0.5), (int) ((double) (green * 255.0F) + 0.5), (int) ((double) (blue * 255.0F) + 0.5), (int) ((double) (alpha * 255.0F) + 0.5));
+        }
+
+        public static int toARGB(int color) {
+            return ARGB.colorFloat(red(color), green(color), blue(color), alpha(color));
         }
 
         public static Color getAwtColor(int rgba) {
